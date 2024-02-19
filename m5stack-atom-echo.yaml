@@ -18,7 +18,7 @@ api:
 ota:
 
 dashboard_import:
-  package_import_url: github://github.com/julllleee/Light/edit/main/m5stack-atom-echo.yaml@main
+  package_import_url: github://julllleee/Light/edit/main/m5stack-atom-echo.yaml@main
 
 wifi:
   on_connect:
@@ -60,8 +60,8 @@ voice_assistant:
   id: va
   microphone: echo_microphone
   speaker: echo_speaker
-  noise_suppression_level: 2
-  auto_gain: 40dBFS
+  noise_suppression_level: 3
+  auto_gain: 36dBFS
   volume_multiplier: 4.0
   vad_threshold: 3
   on_listening:
@@ -74,7 +74,7 @@ voice_assistant:
   on_stt_vad_end:
     - light.turn_on:
         id: led
-        blue: 0%
+        blue: 100%
         red: 100%
         green: 0%
         effect: "Fast Pulse"
@@ -189,7 +189,11 @@ script:
           then:
             - light.turn_on:
                 id: led
-                brightness: 100%
+                red: 100%
+                green: 89%
+                blue: 71%
+                brightness: 60%
+                effect: none
           else:
             - light.turn_off: led
 
@@ -211,7 +215,7 @@ switch:
       - script.execute: reset_led
     on_turn_off:
       - voice_assistant.stop
-      - lambda: id(va).set_use_wake_word(true);
+      - lambda: id(va).set_use_wake_word(false);
       - script.execute: reset_led
   - platform: template
     name: Use Listen Light
