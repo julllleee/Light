@@ -18,7 +18,7 @@ api:
 ota:
 
 dashboard_import:
-  package_import_url: github://esphome/firmware/voice-assistant/m5stack-atom-echo.yaml@main
+  package_import_url: github://github.com/julllleee/Light/edit/main/m5stack-atom-echo.yaml@main
 
 wifi:
   on_connect:
@@ -61,11 +61,10 @@ voice_assistant:
   microphone: echo_microphone
   speaker: echo_speaker
   noise_suppression_level: 2
-  auto_gain: 31dBFS
-  volume_multiplier: 2.0
+  auto_gain: 40dBFS
+  volume_multiplier: 4.0
   vad_threshold: 3
   on_listening:
-  speaker: !lambda return x;
     - light.turn_on:
         id: led
         blue: 100%
@@ -75,16 +74,16 @@ voice_assistant:
   on_stt_vad_end:
     - light.turn_on:
         id: led
-        blue: 100%
-        red: 0%
+        blue: 0%
+        red: 100%
         green: 0%
         effect: "Fast Pulse"
   on_tts_start:
     - light.turn_on:
         id: led
-        blue: 100%
+        blue: 0%
         red: 0%
-        green: 0%
+        green: 100%
         brightness: 100%
         effect: none
   on_end:
@@ -101,7 +100,7 @@ voice_assistant:
         blue: 0%
         brightness: 100%
         effect: none
-    - delay: 1s
+    - delay: 3s
     - script.execute: reset_led
   on_client_connected:
     - if:
