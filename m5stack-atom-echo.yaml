@@ -62,7 +62,7 @@ voice_assistant:
   speaker: echo_speaker
   noise_suppression_level: 2
   auto_gain: 31dBFS
-  volume_multiplier: 2.0
+  volume_multiplier: 4.0
   vad_threshold: 3
   on_listening:
     - light.turn_on:
@@ -75,15 +75,15 @@ voice_assistant:
     - light.turn_on:
         id: led
         blue: 100%
-        red: 0%
+        red: 100%
         green: 0%
         effect: "Fast Pulse"
   on_tts_start:
     - light.turn_on:
         id: led
-        blue: 100%
+        blue: 0%
         red: 0%
-        green: 0%
+        green: 100%
         brightness: 100%
         effect: none
   on_end:
@@ -100,7 +100,7 @@ voice_assistant:
         blue: 0%
         brightness: 100%
         effect: none
-    - delay: 1s
+    - delay: 3s
     - script.execute: reset_led
   on_client_connected:
     - if:
